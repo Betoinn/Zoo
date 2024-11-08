@@ -14,12 +14,12 @@ if ($conn->connect_error) {
 $utilisateurs = [
     [
         "nom_utilisateur" => "admin",
-        "mot_de_passe" => password_hash("admin123", PASSWORD_DEFAULT), // Hachage du mot de passe
+        "mot_de_passe" => password_hash("admin2512", PASSWORD_DEFAULT), // Hachage du mot de passe
         "role" => "admin"
     ],
     [
         "nom_utilisateur" => "utilisateur",
-        "mot_de_passe" => password_hash("user123", PASSWORD_DEFAULT),
+        "mot_de_passe" => password_hash("user2512", PASSWORD_DEFAULT),
         "role" => "utilisateur"
     ]
 ];
