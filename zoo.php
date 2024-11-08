@@ -74,7 +74,7 @@ if (!isset($_SESSION["nom_utilisateur"])) {
     exit;
 }
 
-<?php
+
 if ($_SESSION["role"] != "admin") {
     echo "Accès réservé aux administrateurs.";
     exit;
