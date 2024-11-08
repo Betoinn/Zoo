@@ -1,33 +1,19 @@
 <?php
+// Démarrer la session une seule fois au début
+session_start();
 
+// Connexion à la base de données
 $server = "localhost";
 $username = "root";
 $password = "";
 $databaseName = "inscription";
 
-//Connexion à la base de donnée
 $conn = new mysqli($server, $username, $password, $databaseName);
-//Check connexion
-if($conn->connect_error) {
-    die("connection BDD échouée");
+if ($conn->connect_error) {
+    die("La connexion à la base de données a échoué : " . $conn->connect_error);
 }
 
-$utilisateurs = [
-    [
-        "nom_utilisateur" => "admin",
-        "mot_de_passe" => password_hash("admin123", PASSWORD_DEFAULT), // Hachage pour plus de sécurité
-        "role" => "admin"
-    ],
-    [
-        "nom_utilisateur" => "utilisateur",
-        "mot_de_passe" => password_hash("user123", PASSWORD_DEFAULT),
-        "role" => "utilisateur"
-    ]
-];
-
-session_start();
-
-// Liste des utilisateurs (comme définie dans l'étape 1)
+// Liste des utilisateurs (en dur, pour simplifier, bien qu'il serait préférable d'utiliser la BDD)
 $utilisateurs = [
     [
         "nom_utilisateur" => "admin",
@@ -48,17 +34,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $connexion_reussie = false;
     foreach ($utilisateurs as $utilisateur) {
-        // Vérifier si le nom d'utilisateur existe et si le mot de passe correspond
+        // Vérifier si le nom d'utilisateur et le mot de passe sont corrects
         if ($utilisateur["nom_utilisateur"] === $nom_utilisateur && password_verify($mot_de_passe, $utilisateur["mot_de_passe"])) {
             $connexion_reussie = true;
             
-            // Stocker les informations de session
+            // Stocker les informations de l'utilisateur dans la session
             $_SESSION["nom_utilisateur"] = $utilisateur["nom_utilisateur"];
             $_SESSION["role"] = $utilisateur["role"];
             
-            echo "Connexion réussie ! Bienvenue, " . $_SESSION["nom_utilisateur"];
-            header("Location: accueil.php"); // Redirection vers une page d'accueil protégée
-            exit;
+            // Redirection vers une page d'accueil protégée
+            header("Location: accueil.php");
+            exit; // Arrêter le script ici
         }
     }
 
@@ -66,25 +52,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Nom d'utilisateur ou mot de passe incorrect !";
     }
 }
-
-session_start();
-
-if (!isset($_SESSION["nom_utilisateur"])) {
-    header("Location: connexion.php"); // Redirection vers la page de connexion si non connecté
-    exit;
-}
-
-
-if ($_SESSION["role"] != "admin") {
-    echo "Accès réservé aux administrateurs.";
-    exit;
-}
-
-session_start();
-session_unset(); // Supprimer toutes les variables de session
-session_destroy(); // Détruire la session
-header("Location: connexion.php"); // Redirection vers la page de connexion
-exit;
-
-
 ?>
