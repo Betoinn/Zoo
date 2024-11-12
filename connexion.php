@@ -41,10 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: accueil.php"); // Redirection vers une page d'accueil
             exit;
         } else {
-            echo "Mot de passe incorrect.";
+            echo "Mot de passe incorrect";
         }
     } else {
-        echo "Nom d'utilisateur introuvable.";
+        echo "Nom d'utilisateur introuvable";
     }
     $stmt->close();
 }
