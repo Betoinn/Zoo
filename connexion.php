@@ -4,7 +4,7 @@ session_start();
 
 // Informations de connexion à la base de données
 $host = "localhost";
-$dbname = "parc_animalier";
+$databaseName = "inscription";
 $username = "root";
 $password = ""; // Remplacer par le mot de passe si nécessaire
 
