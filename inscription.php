@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->store_result();
     
     if ($stmt->num_rows > 0) {
-        echo "Nom d'utilisateur déjà pris. Choisissez-en un autre.";
+        echo "Ce nom d'utilisateur est déjà pris, choisissez-en un autre.";
     } else {
         $mot_de_passe_hache = password_hash($mot_de_passe, PASSWORD_DEFAULT);
         
