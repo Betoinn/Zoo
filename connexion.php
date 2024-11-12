@@ -2,49 +2,52 @@
 // Démarrer la session
 session_start();
 
-// Tableau des utilisateurs (en mémoire)
-$utilisateurs = [
-    [
-        "nom_utilisateur" => "admin",
-        "mot_de_passe" => password_hash("admin2512", PASSWORD_DEFAULT), // Hachage du mot de passe
-        "role" => "admin"
-    ],
-    [
-        "nom_utilisateur" => "utilisateur",
-        "mot_de_passe" => password_hash("user2512", PASSWORD_DEFAULT),
-        "role" => "utilisateur"
-    ]
-];
+// Informations de connexion à la base de données
+$host = "localhost";
+$dbname = "parc_animalier";
+$username = "root";
+$password = ""; // Remplacer par le mot de passe si nécessaire
+
+// Connexion à la base de données
+$conn = new mysqli($host, $username, $password, $dbname);
+
+// Vérifier la connexion
+if ($conn->connect_error) {
+    die("Échec de connexion à la base de données : " . $conn->connect_error);
+}
 
 // Vérifier que la requête est de type POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données envoyées en POST
-    $data = json_decode(file_get_contents("php://input"), true);
+    $nom_utilisateur = $_POST["nom_utilisateur"];
+    $mot_de_passe = $_POST["mot_de_passe"];
 
-    // Vérifier que les données nécessaires sont présentes
-    if (isset($data["nom_utilisateur"]) && isset($data["mot_de_passe"])) {
-        // Parcourir le tableau des utilisateurs pour vérifier la correspondance
-        foreach ($utilisateurs as $utilisateur) {
-            if ($utilisateur["nom_utilisateur"] == $data["nom_utilisateur"] &&
-                password_verify($data["mot_de_passe"], $utilisateur["mot_de_passe"])) {
-                
-                // Stocker les informations dans la session
-                $_SESSION["nom_utilisateur"] = $utilisateur["nom_utilisateur"];
-                $_SESSION["role"] = $utilisateur["role"];
+    // Requête pour vérifier le nom d'utilisateur
+    $stmt = $conn->prepare("SELECT id, mot_de_passe, role FROM utilisateurs WHERE nom_utilisateur = ?");
+    $stmt->bind_param("s", $nom_utilisateur);
+    $stmt->execute();
+    $stmt->store_result();
+    
+    // Si l'utilisateur existe, vérifier le mot de passe
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($id, $mot_de_passe_hache, $role);
+        $stmt->fetch();
 
-                // Réponse de connexion réussie
-                http_response_code(200); // Succès
-                echo json_encode(["message" => "Connexion réussie", "nom_utilisateur" => $_SESSION["nom_utilisateur"], "role" => $_SESSION["role"]]);
-                exit;
-            }
+        if (password_verify($mot_de_passe, $mot_de_passe_hache)) {
+            // Mot de passe correct, démarrer la session
+            $_SESSION["nom_utilisateur"] = $nom_utilisateur;
+            $_SESSION["role"] = $role;
+
+            echo "Connexion réussie ! Bienvenue, " . $_SESSION["nom_utilisateur"];
+            header("Location: accueil.php"); // Redirection vers une page d'accueil
+            exit;
+        } else {
+            echo "Mot de passe incorrect.";
         }
-
-        // Si aucun utilisateur n'a été trouvé avec les identifiants fournis
-        http_response_code(401); // Non autorisé
-        echo json_encode(["message" => "Nom d'utilisateur ou mot de passe incorrect."]);
     } else {
-        http_response_code(400); // Mauvaise requête (données manquantes)
-        echo json_encode(["message" => "Données manquantes."]);
+        echo "Nom d'utilisateur introuvable.";
     }
+    $stmt->close();
 }
+
+$conn->close();
 ?>
