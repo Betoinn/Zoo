@@ -1,5 +1,4 @@
 <?php
-// enclos.php
 include 'config.php';
 
 $requeteEnclos = $connexion->query("SELECT * FROM enclos");
