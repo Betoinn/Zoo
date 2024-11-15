@@ -11,6 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $requete->bind_param("iiis", $enclosId, $utilisateurId, $note, $commentaire);
     $requete->execute();
 
-    echo "Avis ajouté avec succès !";
+    echo "Votre avis a bien été pris en compte";
 }
 ?>
