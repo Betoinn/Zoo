@@ -1,5 +1,4 @@
 <?php
-// config.php
 $serveur = "localhost";
 $nomUtilisateur = "root";
 $motDePasse = "";
