@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <title>Station Maulines Saint Véran</title>
+    <!-- Inclure la police "Anta" depuis Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anta&display=swap">
+    <!-- Lier le fichier CSS externe -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="default-device bodyclass">
+
+<!-- Conteneur de la vidéo en arrière-plan -->
+<div id="video-container">
+    <video id="bg-video" autoplay loop muted>
+        <source src="vidéos\PageNeuve.mp4" type="video/mp4">
+    </video>
+</div>
+
+<!-- Flou noir en haut -->
+<div class="blur-top"></div>
+
+<!-- Flou noir en bas -->
+<div class="blur-bottom"></div>
+
+<!-- Texte "Station Maulines Saint Véran" -->
+<div id="station-name">Station Maulines Saint Véran</div>
+
+<!-- Phrase "L'exaltation des sens" avec un point à la fin -->
+<div id="sens-phrase">L'exaltation<br>des sens.</div>
+
+<!-- Bouton de pause pour la vidéo -->
+<button id="pause-button">
+    <span id="pause-icon"></span>
+</button>
+
+<!-- Bouton du menu -->
+<div class="menu-button">≡ Menu</div>
+
+<!-- Menu déroulant -->
+<div id="menu" class="menu">
+    <a href="accueil.html" class="menu-item">Accueil</a>
+    <a href="pistes.html" class="menu-item">Pistes</a>
+    <a href="remontees.html" class="menu-item">Remontées</a>
+    <a href="votre_descente.html" class="menu-item">Votre descente</a>
+    <a href="chat.html" class="menu-item">Chat avec la station</a>
+    <a href="meteo.html" class="menu-item">Météo des pistes</a>
+</div>
+
+<!-- Bouton utilisateur -->
+<div id="user-button">𓃘 Connexion</div>
+
+<!-- Menu déroulant pour la connexion -->
+<div id="login-menu" class="login-menu">
+    <input type="text" placeholder="Nom d'utilisateur">
+    <input type="password" placeholder="Mot de passe">
+    <button class="login-button">Connexion</button>
+    <button class="register-button">S'inscrire maintenant</button>
+</div>
+
+<!-- Bouton "Rejoins-nous sur les pistes !" -->
+<div id="join-button">Rejoignez-nous sur les pistes !</div>
+
+<!-- Lier le fichier JavaScript externe -->
+<script src="script.js"></script>
+
+</body>
+</html>
