@@ -21,7 +21,7 @@ function ajouterOuModifierHoraire($enclos_id, $horaire) {
     if ($stmt->execute()) {
         return "Horaire mis à jour ou ajouté avec succès.";
     } else {
-        return "Erreur lors de l'ajout/mise à jour de l'horaire : " . $stmt->error;
+        return "Erreur lors de l'ajout ou de la mise à jour de l'horaire : " . $stmt->error;
     }
 }
 
