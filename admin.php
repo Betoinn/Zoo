@@ -1,8 +1,7 @@
 <?php
 include 'config.php';
-session_start();
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && $_SESSION["role"] === "admin") {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_COOKIE["role"]) && $_COOKIE["role"] === "admin") {
     $enclosId = $_POST["enclos_id"];
     $nouveauStatut = $_POST["statut"]; // "ouvert" ou "en travaux"
 
