@@ -1,7 +1,7 @@
 <?php
-include 'config.php'; // Connexion à la base de données
+include 'config.php'; 
 
-// Ajouter ou mettre à jour un horaire pour un enclos
+// Ajouter un horaire pour un enclos
 function ajouterOuModifierHoraire($enclos_id, $horaire) {
     global $connexion;
     // Vérifier si un horaire existe déjà pour cet enclos
@@ -12,10 +12,8 @@ function ajouterOuModifierHoraire($enclos_id, $horaire) {
     $result = $stmt->get_result();
     
     if ($result->num_rows > 0) {
-        // Mettre à jour l'horaire
         $sql = "UPDATE horaires_repas SET horaire = ? WHERE enclos_id = ?";
     } else {
-        // Ajouter un nouvel horaire
         $sql = "INSERT INTO horaires_repas (horaire, enclos_id) VALUES (?, ?)";
     }
     $stmt = $connexion->prepare($sql);
