@@ -5,9 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nomUtilisateur = $_POST["nom_utilisateur"];
     $motDePasse = $_POST["mot_de_passe"];
 
-    echo "Nom d'utilisateur : " . htmlspecialchars($nomUtilisateur) . "<br>";
-    echo "Mot de passe : " . htmlspecialchars($motDePasse);
-
     // Vérification pour l'admin spécifique
     if ($nomUtilisateur === "userAdmin" && $motDePasse === "mdpAdmin") {
         // Stocker les informations dans des cookies
