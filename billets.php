@@ -1,7 +1,7 @@
 <?php
-include 'config.php'; // Connexion à la base de données
+include 'config.php'; 
 
-// Ajouter un billet
+
 function ajouterBillet($utilisateur_id, $date_achat) {
     global $connexion;
     $sql = "INSERT INTO billets (utilisateur_id, date_achat, valide) VALUES (?, ?, 0)";
@@ -14,7 +14,7 @@ function ajouterBillet($utilisateur_id, $date_achat) {
     }
 }
 
-// Lister tous les billets (par exemple, pour un administrateur)
+// Lister tous les billets 
 function listerBillets() {
     global $connexion;
     $sql = "SELECT * FROM billets";
@@ -22,7 +22,7 @@ function listerBillets() {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-// Valider un billet (changer valide à 1)
+// Valider un billet 
 function validerBillet($id) {
     global $connexion;
     $sql = "UPDATE billets SET valide = 1 WHERE id = ?";
