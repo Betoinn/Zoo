@@ -1,6 +1,5 @@
 <?php
 include 'config.php';
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nomUtilisateur = $_POST["nom_utilisateur"];
@@ -8,8 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Vérification pour l'admin spécifique
     if ($nomUtilisateur === "userAdmin" && $motDePasse === "mdpAdmin") {
-        $_SESSION["nom_utilisateur"] = "userAdmin";
-        $_SESSION["role"] = "admin"; // Définir le rôle comme "admin"
+        // Stocker les informations dans des cookies
+        setcookie("nom_utilisateur", "userAdmin", time() + 3600, "/"); // Cookie valable 1h
+        setcookie("role", "admin", time() + 3600, "/"); // Cookie valable 1h
         echo "Connexion réussie en tant qu'administrateur.";
         exit;
     }
@@ -22,8 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $utilisateur = $resultat->fetch_assoc();
 
     if ($utilisateur && password_verify($motDePasse, $utilisateur["mot_de_passe"])) {
-        $_SESSION["nom_utilisateur"] = $utilisateur["nom_utilisateur"];
-        $_SESSION["role"] = $utilisateur["role"];
+        // Stocker les informations dans des cookies
+        setcookie("nom_utilisateur", $utilisateur["nom_utilisateur"], time() + 3600, "/"); // Cookie valable 1h
+        setcookie("role", $utilisateur["role"], time() + 3600, "/"); // Cookie valable 1h
         echo "Connexion réussie !";
     } else {
         echo "Nom d'utilisateur ou mot de passe incorrect.";
