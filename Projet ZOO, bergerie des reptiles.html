@@ -15,8 +15,45 @@
             height: 100vh; /* Hauteur de la page */
         }
     </style>
+	<style>
+        .container {
+            display: flex;
+            justify-content: center; /* Centrage horizontal */
+            align-items: center;     /* Centrage vertical */
+            height: 100vh;           /* Hauteur de la fenêtre */
+            flex-wrap: wrap;         /* Permet aux images de s'ajuster si nécessaire */
+        }
+
+        .container img {
+            margin: 10px; /* Espacement entre les images */
+            max-width: 350px; /* Limite la taille des images */
+			width: 350px; /* Largeur de l'image */
+			height: 350px; /* Hauteur de l'image */
+			object-fit: cover; /* Permet de remplir sans déformer */
+        }
+    </style>
 </head>
 <body>
     <h1 style="text-align: center; color: white;">Bienvenue chez les animaux habitant dans la Bergeries des Reptiles</h1>
+	<div class="container">
+		<img src="C:\xampp\img\Enclos 1  Le Belvédère\Crocodile nain.jpg" alt="Image 1">
+		<h1 style="text-align: center; color: white;">Crocodile nain</h1>
+		<img src="C:\xampp\img\Enclos 1  Le Belvédère\Casoar.jpg" alt="Image 2">
+		<h1 style="text-align: center; color: white;">Casoar</h1>
+		<img src="C:\xampp\img\Enclos 1  Le Belvédère\Tapir.jpg" alt="Image 3">
+		<h1 style="text-align: center; color: white;">Tapir</h1>
+		<img src="C:\xampp\img\Enclos 1  Le Belvédère\Fennec.jpg"  alt="Image 4">
+		<h1 style="text-align: center; color: white;">Fennec</h1>
+		<img src="C:\xampp\img\Enclos 1  Le Belvédère\Suricate.jpg"  alt="Image 5">
+		<h1 style="text-align: center; color: white;">Suricate</h1>
+		<img src="C:\xampp\img\Enclos 1  Le Belvédère\Guépard2.jpg.png"  alt="Image 6">
+		<h1 style="text-align: center; color: white;">Guépard</h1>
+		<img src="C:\xampp\img\Enclos 1  Le Belvédère\Autruche&Gazelle2.png"  alt="Image 7">
+		<h1 style="text-align: center; color: white;">Autruche & Gazelle</h1>
+		<img src="C:\xampp\img\Enclos 1  Le Belvédère\Saïmiri&Coati.webp" alt="Image 8">
+		<h1 style="text-align: center; color: white;">Saïmiri & Coati</h1>
+		<img src="C:\xampp\img\Enclos 1  Le Belvédère\Rhinocéros&Gnou&Oryx beisa.webp"  alt="Image 9">
+		<h1 style="text-align: center; color: white;">Rhinocéros & Gnou & Oryx</h1>
+	</div>
 </body>
 </html>
