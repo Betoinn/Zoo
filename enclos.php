@@ -1,18 +1,25 @@
 <?php
 include 'config.php';
 
-$requeteEnclos = $connexion->query("SELECT * FROM enclos");
-$enclos = $requeteEnclos->fetch_all(MYSQLI_ASSOC);
+// Vérifier si un ID de biome est passé
+if (isset($_GET['biome_id'])) {
+    $biomeId = intval($_GET['biome_id']);
 
-$requeteAnimaux = $connexion->query("SELECT * FROM animaux");
-$animaux = $requeteAnimaux->fetch_all(MYSQLI_ASSOC);
+    // Récupérer les enclos liés au biome
+    $requete = $connexion->prepare("SELECT id, nom_enclos FROM enclos WHERE biome_id = ?");
+    $requete->bind_param("i", $biomeId);
+    $requete->execute();
+    $resultat = $requete->get_result();
 
-foreach ($enclos as $enclosItem) {
-    echo "Enclos : " . $enclosItem["nom_enclos"] . "<br>";
-    foreach ($animaux as $animal) {
-        if ($animal["enclos_id"] === $enclosItem["id"]) {
-            echo " - Animal : " . $animal["nom_animal"] . "<br>";
-        }
+    $enclos = [];
+    while ($enclosRow = $resultat->fetch_assoc()) {
+        $enclos[] = $enclosRow;
     }
+
+    // Retourner les données au format JSON
+    header('Content-Type: application/json');
+    echo json_encode($enclos);
+} else {
+    echo json_encode(["erreur" => "Aucun ID de biome spécifié."]);
 }
 ?>

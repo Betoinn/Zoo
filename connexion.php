@@ -14,20 +14,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    // Vérification des informations dans la base de données
+    
+    // Vérification dans la base de données
     $requete = $connexion->prepare("SELECT * FROM utilisateurs WHERE nom_utilisateur = ?");
-    $requete->bind_param("s", $nomUtilisateur);
-    $requete->execute();
-    $resultat = $requete->get_result();
-    $utilisateur = $resultat->fetch_assoc();
-
-    if ($utilisateur && password_verify($motDePasse, $utilisateur["mot_de_passe"])) {
-        // Stocker les informations dans des cookies
-        setcookie("nom_utilisateur", $utilisateur["nom_utilisateur"], time() + 3600, "/"); // Cookie valable 1h
-        setcookie("role", $utilisateur["role"], time() + 3600, "/"); // Cookie valable 1h
-        echo "Connexion réussie !";
-    } else {
-        echo "Nom d'utilisateur ou mot de passe incorrect.";
+        $requete->bind_param("s", $nomUtilisateur);
+        $requete->execute();
+        $resultat = $requete->get_result();
+        $utilisateur = $resultat->fetch_assoc();
+    
+        if ($utilisateur && password_verify($motDePasse, $utilisateur["mot_de_passe"])) {
+            // Connexion réussie : Stocker les informations de l'utilisateur dans des cookies
+            setcookie("nom_utilisateur", $utilisateur["nom_utilisateur"], time() + 3600, "/"); // Cookie valable 1h
+            setcookie("role", $utilisateur["role"], time() + 3600, "/"); // Cookie valable 1h
+    
+            // Rediriger vers la page d'accueil avec l'utilisateur connecté
+            header("Location: index.php?connexion_success=true");
+            exit();
+        } else {
+            // Si l'authentification échoue
+            echo "Nom d'utilisateur ou mot de passe incorrect.";
+        }
     }
-}
-?>
+    ?>
