@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    // Sinon, continuer avec la vérification dans la base de données
+    // Vérification des informations dans la base de données
     $requete = $connexion->prepare("SELECT * FROM utilisateurs WHERE nom_utilisateur = ?");
     $requete->bind_param("s", $nomUtilisateur);
     $requete->execute();
