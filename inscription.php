@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($requete->execute()) {
         echo "Inscription réussie !";
+        header("Location: index.php?inscription_success=true");
         exit();
     } else {
         echo "Erreur lors de l'inscription : " . $connexion->error;
