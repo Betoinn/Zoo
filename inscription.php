@@ -31,8 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $requete->bind_param("ss", $nomUtilisateur, $motDePasseHash);
 
     if ($requete->execute()) {
-        echo "Inscription réussie ! Vous pouvez maintenant vous connecter.";
-        header("Location: index.php?inscription_success=true");
+        echo "Inscription réussie !";
         exit();
     } else {
         echo "Erreur lors de l'inscription : " . $connexion->error;
