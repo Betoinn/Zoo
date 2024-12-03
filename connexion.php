@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             setcookie("nom_utilisateur", $utilisateur["nom_utilisateur"], time() + 3600, "/"); // Cookie valable 1h
             setcookie("role", $utilisateur["role"], time() + 3600, "/"); // Cookie valable 1h
     
-            // Rediriger vers la page d'accueil avec l'utilisateur connecté
+            echo "Connexion réussie !"
             exit();
         } else {
             // Si l'authentification échoue
