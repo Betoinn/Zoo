@@ -24,10 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
         if ($utilisateur && password_verify($motDePasse, $utilisateur["mot_de_passe"])) {
             // Connexion réussie : Stocker les informations de l'utilisateur dans des cookies
+            echo "Connexion réussie !"
             setcookie("nom_utilisateur", $utilisateur["nom_utilisateur"], time() + 3600, "/"); // Cookie valable 1h
             setcookie("role", $utilisateur["role"], time() + 3600, "/"); // Cookie valable 1h
-    
-            echo "Connexion réussie !"
             exit();
         } else {
             // Si l'authentification échoue
