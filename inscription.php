@@ -2,41 +2,43 @@
 include 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Vérifier si les champs sont bien remplis
+    // Vérification que les champs ne sont pas vides
     if (empty($_POST["nom_utilisateur"]) || empty($_POST["mot_de_passe"])) {
-        echo "Erreur : Tous les champs doivent être remplis.";
+        echo "<script>alert('Veuillez remplir tous les champs.'); window.location.href = 'index.html';</script>";
         exit();
     }
 
-    // Récupérer les informations en les sécurisant
     $nomUtilisateur = htmlspecialchars(trim($_POST["nom_utilisateur"]));
     $motDePasse = trim($_POST["mot_de_passe"]);
 
-    // Vérifier si l'utilisateur existe déjà
+    // Définir le rôle de l'utilisateur
+    $role = 'utilisateur'; // Par défaut
+    if ($nomUtilisateur === "admin") {
+        $role = "administrateur"; // Si l'utilisateur s'appelle "admin", on le considère comme administrateur
+    }
+
+    // Vérification si l'utilisateur existe déjà
     $requeteVerif = $connexion->prepare("SELECT id FROM utilisateurs WHERE nom_utilisateur = ?");
     $requeteVerif->bind_param("s", $nomUtilisateur);
     $requeteVerif->execute();
     $resultatVerif = $requeteVerif->get_result();
 
     if ($resultatVerif->num_rows > 0) {
-        echo "Erreur : Ce nom d'utilisateur est déjà utilisé.";
+        echo "<script>alert('Nom d\'utilisateur déjà utilisé.'); window.location.href = 'index.html';</script>";
         exit();
     }
 
     // Hachage du mot de passe
     $motDePasseHash = password_hash($motDePasse, PASSWORD_DEFAULT);
 
-    // Insérer dans la base de données
-    $requete = $connexion->prepare("INSERT INTO utilisateurs (nom_utilisateur, mot_de_passe, role) VALUES (?, ?, 'utilisateur')");
-    $requete->bind_param("ss", $nomUtilisateur, $motDePasseHash);
+    // Insertion dans la base de données
+    $requete = $connexion->prepare("INSERT INTO utilisateurs (nom_utilisateur, mot_de_passe, role) VALUES (?, ?, ?)");
+    $requete->bind_param("sss", $nomUtilisateur, $motDePasseHash, $role);
 
     if ($requete->execute()) {
-        echo "Inscription réussie !";
-        header("Location: index.php?inscription_success=true");
-        exit();
+        echo "<script>alert('Inscription réussie ! Vous pouvez maintenant vous connecter.'); window.location.href = 'index.html';</script>";
     } else {
-        echo "Erreur lors de l'inscription : " . $connexion->error;
-        exit();
+        echo "<script>alert('Erreur lors de l\'inscription.'); window.location.href = 'index.html';</script>";
     }
 }
 ?>
