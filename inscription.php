@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $motDePasse = trim($_POST["mot_de_passe"]);
 
     // Déboguer le nom d'utilisateur
-    var_dump($nomUtilisateur); // Affiche la valeur de nom_utilisateur
+   // var_dump($nomUtilisateur); // Affiche la valeur de nom_utilisateur
 
     // Vérification si l'utilisateur existe déjà
     $requeteVerif = $connexion->prepare("SELECT id FROM utilisateurs WHERE nom_utilisateur = ?");

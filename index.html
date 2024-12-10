@@ -146,7 +146,7 @@
         <!-- Formulaire de connexion -->
 <!-- Formulaire de Connexion -->
 <div id="authSection">
-    <form id="loginForm" class="content-box" method="POST" action="connexion.php">
+    <form id="loginForm" class="content-box" method="POST" action="connexion.php" style="display: block;">
         <h2>Connexion</h2>
         <input type="text" name="nom_utilisateur" id="username" placeholder="Nom d'utilisateur" required>
         <input type="password" name="mot_de_passe" id="password" placeholder="Mot de passe" required>
@@ -175,40 +175,9 @@
     function showLoginForm() {
         document.getElementById('signupForm').style.display = 'none';
         document.getElementById('loginForm').style.display = 'block';
-    }
-<!-- Formulaire de Connexion -->
-<div id="authSection">
-    <form id="loginForm" class="content-box" method="POST" action="connexion.php">
-        <h2>Connexion</h2>
-        <input type="text" name="nom_utilisateur" id="username" placeholder="Nom d'utilisateur" required>
-        <input type="password" name="mot_de_passe" id="password" placeholder="Mot de passe" required>
-        <button type="submit">Connexion</button>
-        <a href="#" class="signup-button" onclick="showSignupForm()">Pas encore inscrit ? S'inscrire maintenant !</a>
-    </form>
-
-    <!-- Formulaire d'Inscription (initialement caché) -->
-    <form id="signupForm" class="content-box" method="POST" action="inscription.php" style="display: none;">
-        <h2>Inscription</h2>
-        <input type="text" name="nom_utilisateur" id="signupUsername" placeholder="Nom d'utilisateur" required>
-        <input type="password" name="mot_de_passe" id="signupPassword" placeholder="Mot de passe" required>
-        <button type="submit">S'inscrire</button>
-        <a href="#" class="login-button" onclick="showLoginForm()">Déjà inscrit ? Connectez-vous ici.</a>
-    </form>
-</div>
-
-<script>
-    // Fonction pour afficher le formulaire d'inscription
-    function showSignupForm() {
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('signupForm').style.display = 'block';
-    }
-
-    // Fonction pour revenir au formulaire de connexion
-    function showLoginForm() {
-        document.getElementById('signupForm').style.display = 'none';
-        document.getElementById('loginForm').style.display = 'block';
-    }
+   }
 </script>
+
 
     <!-- Image décorative -->
     <img class="decorative-image" src="images/LogoAix.png" alt="Logo du Parc">
