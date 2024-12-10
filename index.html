@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'Accueil</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Inclure la police "Anta" depuis Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anta&display=swap">
     <style>
-        /* Styles pour la mise en page et l'apparence */
+        /* Styles pour la mise en page */
         body {
-            font-family: 'Anta', sans-serif; /* Utilisation de la police Anta */
+            font-family: 'Anta', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 100vh;
-            background-color: #f2f2f2; /* Couleur de fond */
+            background-color: #f2f2f2;
             position: relative;
         }
         #video-background {
@@ -36,125 +35,160 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 70px; /* Hauteur de la barre */
-            background-color: rgba(0, 0, 0, 0.7); /* Couleur de fond semi-transparente */
+            height: 70px;
+            background-color: rgba(0, 0, 0, 0.7);
             display: flex;
             justify-content: space-around;
             align-items: center;
-            z-index: 999; /* Pour s'assurer que la barre est au-dessus de la vidéo */
-            color: white; /* Couleur du texte */
-            padding: 0 20px; /* Espacement intérieur */
-            font-size: 25px; /* Taille du texte */
-            font-family: 'Anta', sans-serif; /* Utilisation de la police Anta */
-            overflow: hidden; /* Pour éviter le débordement des mots */
+            z-index: 999;
+            color: white;
+            padding: 0 20px;
+            font-size: 25px;
+            font-family: 'Anta', sans-serif;
+            overflow: hidden;
         }
         .dark-bar a {
             text-decoration: none;
             color: white;
-            margin: 0 10px; /* Espacement des éléments */
-            transition: all 0.3s ease; /* Animation de transition */
+            margin: 0 10px;
+            transition: all 0.3s ease;
         }
         .dark-bar a:hover {
-            color: #007bff; /* Couleur du texte au survol */
+            color: #007bff;
         }
         #content {
             z-index: 1;
             text-align: center;
-            margin-top: 100px; /* Espacement du contenu par rapport à la barre */
+            margin-top: 100px;
         }
         .content-box {
-            width: 15%;
+            width: 300px;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7); /* Couleur de fond semi-transparente */
-            border-radius: 10px; /* Bord arrondi */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ombre */
-            margin-bottom: 30px; /* Espacement en bas */
-            margin-right: 20px; /* Espacement à droite */
-            margin-left: 10px; /* Décalage encore plus à gauche du formulaire */
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
         }
         .content-box h2 {
-            color: white; /* Couleur du texte */
-            font-size: 30px; /* Taille du texte */
-            margin-bottom: 20px; /* Espacement en bas */
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
-        #loginForm input[type="text"],
-        #loginForm input[type="password"],
-        #loginForm button {
+        .content-box input {
             width: 100%;
             margin-bottom: 10px;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
-            background-color: rgba(255, 255, 255, 0.8); /* Couleur de fond semi-transparente */
+            background-color: rgba(255, 255, 255, 0.8);
         }
-        #loginForm button {
-            background-color: #007bff; /* Couleur du bouton */
-            color: #fff; /* Couleur du texte du bouton */
+        .content-box button {
+            width: 100%;
+            padding: 10px;
             border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
             cursor: pointer;
         }
-        /* Image décorative en bas à droite */
-        .decorative-image {
-            position: absolute;
-            bottom: 25px;
-            left: 5;
-            right: 5;
-            width: 400px; /* Taille de l'image */
-            z-index: 1;
+        .content-box button:hover {
+            background-color: #0056b3;
         }
         .signup-button {
             display: block;
             margin-top: 10px;
             color: #007bff;
-            font-size: 16px;
+            font-size: 14px;
             text-decoration: none;
             transition: all 0.3s ease;
         }
         .signup-button:hover {
             color: #0056b3;
         }
-  
         .welcome-title {
-            color: #fff; /* Couleur du texte blanc */
-            font-size: 48px; /* Taille du texte */
-            margin-left: 0; /* Centrer le texte en enlevant la marge à gauche */
-            text-align: center; /* Centrage du texte */
-            margin-top: 50px; /* Marge en haut */
-            text-shadow: 2px 2px 4px #000000; /* Ajout d'un effet d'ombre pour rendre le texte plus visible */
+            color: #fff;
+            font-size: 48px;
+            text-align: center;
+            margin-top: 50px;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        .decorative-image {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            width: 150px;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
     <video id="video-background" autoplay loop muted>
-        <source src="vidéos\PageNeuve.mp4" type="video/mp4">
+        <source src="vidéos/PageNeuve.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <!-- Barre supérieure -->
+
+    <!-- Barre de navigation -->
     <div class="dark-bar">
         <a href="index.html">𓃹 Accueil</a>
-        <a href="pistes.html">𓅯 Billeterie</a>
+        <a href="pistes.html">𓅯 Billetterie</a>
         <a href="services.html">𓃘 Services</a>
         <a href="#">𓃰 Nos animaux</a>
         <a href="#">𓅡 Enclos du parc</a>
         <a href="#">𓃱 Administration</a>
     </div>
+
+    <!-- Contenu principal -->
     <div id="content">
         <h1 class="welcome-title">La Vie Sauvage, Parc Animalier d'Aix-en-Provence.</h1>
+
         <!-- Formulaire de connexion -->
-        <form id="loginForm" class="content-box">
-            <h2>Connexion</h2>
-            <input type="text" id="username" placeholder="Nom d'utilisateur" required>
-            <input type="password" id="password" placeholder="Mot de passe" required>
-            <button type="submit">Connexion</button>
-            <a href="#" class="signup-button">Pas encore inscrit ? S'inscrire maintenant !</a>
+<!-- Formulaire de Connexion -->
+<div id="authSection">
+    <form id="loginForm" class="content-box" method="POST" action="connexion.php">
+        <h2>Connexion</h2>
+        <input type="text" name="nom_utilisateur" id="username" placeholder="Nom d'utilisateur" required>
+        <input type="password" name="mot_de_passe" id="password" placeholder="Mot de passe" required>
+        <button type="submit">Connexion</button>
+        <a href="#" class="signup-button" onclick="showSignupForm()">Pas encore inscrit ? S'inscrire maintenant !</a>
+    </form>
+
+    <!-- Formulaire d'Inscription (initialement caché) -->
+    <form id="signupForm" class="content-box" method="POST" action="inscription.php" style="display: none;">
+        <h2>Inscription</h2>
+        <input type="text" name="nom_utilisateur" id="signupUsername" placeholder="Nom d'utilisateur" required>
+        <input type="password" name="mot_de_passe" id="signupPassword" placeholder="Mot de passe" required>
+        <button type="submit">S'inscrire</button>
+        <a href="#" class="login-button" onclick="showLoginForm()">Déjà inscrit ? Connectez-vous ici.</a>
+    </form>
+</div>
+
+<script>
+    // Fonction pour afficher le formulaire d'inscription
+    function showSignupForm() {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('signupForm').style.display = 'block';
+    }
+
+    // Fonction pour revenir au formulaire de connexion
+    function showLoginForm() {
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
+    }
+</script>
+
+        <!-- Formulaire d'inscription -->
+        <form id="signupForm" class="content-box" method="POST" action="inscription.php">
+            <h2>Inscription</h2>
+            <input type="text" id="signup-username" name="nom_utilisateur" placeholder="Nom d'utilisateur" required>
+            <input type="password" id="signup-password" name="mot_de_passe" placeholder="Mot de passe" required>
+            <button type="submit">S'inscrire</button>
         </form>
     </div>
-    <!-- Image décorative en bas à droite -->
-    <img class="decorative-image" src="images\LogoAix.png" alt="Decorative Image">
-    <script>
-        // Code JavaScript pour récupérer et afficher les données des pistes depuis le fichier JSON
-        // Vous devez implémenter cette partie pour charger les données des pistes et les afficher dynamiquement
-    </script>
+
+    <!-- Image décorative -->
+    <img class="decorative-image" src="images/LogoAix.png" alt="Logo du Parc">
+
 </body>
 </html>
