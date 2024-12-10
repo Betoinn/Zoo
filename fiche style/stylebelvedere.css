@@ -23,8 +23,8 @@
         }
 /* Appliquer à l'élément de carrousel */
 .carousel {
-    width: 60%; /* Réduction de la largeur */
-    height: 300px; /* Hauteur fixe pour le carrousel */
+    width: 70%; /* Réduction de la largeur */
+    height: 600px; /* Hauteur fixe pour le carrousel */
     margin: 0 auto; /* Centrer horizontalement */
     border-radius: 10px; /* Coins arrondis pour un look élégant */
     overflow: hidden; /* Empêche les débordements */
