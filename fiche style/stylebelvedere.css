@@ -1,0 +1,26 @@
+
+        body {
+            /* Utilisation de l'image de fond */
+            background-image: url("../Zoo/assets/belvédère.jpg");
+            background-size: cover; /* Couvre toute la page */
+            background-position: center; /* Centrer l'image */
+            background-attachment: fixed; /* L'image reste fixe lors du défilement */
+            margin: 0; /* Supprime les marges par défaut */
+            height: 100vh; /* Hauteur de la page */
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour contraste */
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1, p {
+            text-align: center;
+        }
+.carrousel{
+
+}
