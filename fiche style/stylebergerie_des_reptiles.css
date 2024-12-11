@@ -1,0 +1,59 @@
+        body {
+            /* Utilisation de l'image de fond */
+            background-image: url("../assets/bergeries_des_reptiles.png");
+            background-size: cover; /* Couvre toute la page */
+            background-position: center; /* Centrer l'image */
+            background-attachment: fixed; /* L'image reste fixe lors du défilement */
+            margin: 0; /* Supprime les marges par défaut */
+            height: 100vh; /* Hauteur de la page */
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.8); /* Fond semi-transparent pour contraste */
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1, p {
+            text-align: center;
+        }
+/* Appliquer à l'élément de carrousel */
+.carousel {
+    width: 70%; /* Réduction de la largeur */
+    height: 600px; /* Hauteur fixe pour le carrousel */
+    margin: 0 auto; /* Centrer horizontalement */
+    border-radius: 10px; /* Coins arrondis pour un look élégant */
+    overflow: hidden; /* Empêche les débordements */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombre pour un effet esthétique */
+}
+
+/* Appliquer aux images dans le carrousel */
+.carousel img {
+    width: 100%; /* Remplir la largeur du conteneur */
+    height: 100%; /* Remplir la hauteur du conteneur */
+    object-fit: cover; /* Maintenir les proportions sans déformer */
+    border-radius: 10px; /* Coins arrondis */
+}
+
+/* Boutons de contrôle du carrousel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    border-radius: 50%; /* Rond pour les boutons */
+    padding: 10px; /* Augmente la taille des boutons */
+}
+
+/* Rendre les boutons plus visibles */
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Plus sombre au survol */
+}
+
+/* Styles pour les boutons (optionnel) */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Réduit la largeur occupée par les boutons */
+}
