@@ -1,6 +1,11 @@
 <?php
 include 'config.php';
 
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Récupération des données du formulaire
     $nomUtilisateur = htmlspecialchars(trim($_POST['nom_utilisateur']));
