@@ -1,7 +1,7 @@
 
         body {
             /* Utilisation de l'image de fond */
-            background-image: url("../Zoo/assets/belvédère.jpg");
+            background-image: url("../assets/belvédère.jpg");
             background-size: cover; /* Couvre toute la page */
             background-position: center; /* Centrer l'image */
             background-attachment: fixed; /* L'image reste fixe lors du défilement */
