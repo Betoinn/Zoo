@@ -31,6 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Hachage du mot de passe
     $motDePasseHash = password_hash($motDePasse, PASSWORD_DEFAULT);
 
+    // Définition d'un rôle par défaut
+    $role = 'utilisateur'; // Rôle par défaut pour les nouveaux inscrits
+
     // Insertion dans la base de données
     $requete = $connexion->prepare("INSERT INTO utilisateurs (nom_utilisateur, mot_de_passe, role) VALUES (?, ?, ?)");
     $requete->bind_param("sss", $nomUtilisateur, $motDePasseHash, $role);
