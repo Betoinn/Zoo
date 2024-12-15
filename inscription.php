@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $requete->bind_param("sss", $nomUtilisateur, $motDePasseHash, $role);
 
     if ($requete->execute()) {
-        echo "<script>alert('Inscription réussie ! Vous pouvez maintenant vous connecter.'); window.location.href = 'index.html';</script>";
+        echo "<script>alert('Inscription réussie !'); window.location.href = 'index.html';</script>";
     } else {
         echo "<script>alert('Erreur lors de l\'inscription.'); window.location.href = 'index.html';</script>";
     }
