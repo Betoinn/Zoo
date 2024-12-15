@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
- // Vérification pour l'admin spécifique
+ // Vérification pour l'admin 
  if ($nomUtilisateur === "userAdmin" && $motDePasse === "mdpAdmin") {
     // Stocker les informations dans des cookies
     setcookie("nom_utilisateur", "userAdmin", time() + 3600, "/"); // Cookie valable 1h
@@ -30,12 +30,12 @@ $nomUtilisateur = htmlspecialchars(trim($_POST["nom_utilisateur"]));
     if ($resultat->num_rows === 1) {
         $utilisateur = $resultat->fetch_assoc();
 
-        // Vérification du mot de passe
+        // Vérifier le mot de passe
         if (password_verify($motDePasse, $utilisateur['mot_de_passe'])) {
             // Connexion réussie : Stocker les informations dans des cookies
-            setcookie("user_id", $utilisateur['id'], time() + 3600, "/"); // Cookie valable 1h
-            setcookie("nom_utilisateur", $nomUtilisateur, time() + 3600, "/"); // Cookie valable 1h
-            setcookie("role", $utilisateur['role'], time() + 3600, "/"); // Cookie valable 1h
+            setcookie("user_id", $utilisateur['id'], time() + 3600, "/"); 
+            setcookie("nom_utilisateur", $nomUtilisateur, time() + 3600, "/"); 
+            setcookie("role", $utilisateur['role'], time() + 3600, "/"); 
 
             // Rediriger en fonction du rôle
             if ($utilisateur['role'] === 'administrateur') {
