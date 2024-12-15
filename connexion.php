@@ -46,9 +46,12 @@ $nomUtilisateur = htmlspecialchars(trim($_POST["nom_utilisateur"]));
             exit();
         } else {
             echo "<script>alert('Nom d\'utilisateur ou mot de passe incorrect.'); window.location.href = 'index.html';</script>";
+            exit();
         }
     } else {
         echo "<script>alert('Nom d\'utilisateur ou mot de passe incorrect.'); window.location.href = 'index.html';</script>";
+        exit();
     }
+    
 }
 ?>
