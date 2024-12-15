@@ -11,8 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nomUtilisateur = htmlspecialchars(trim($_POST["nom_utilisateur"]));
     $motDePasse = trim($_POST["mot_de_passe"]);
 
-    // Déboguer le nom d'utilisateur
-   // var_dump($nomUtilisateur); // Affiche la valeur de nom_utilisateur
 
     // Vérification si l'utilisateur existe déjà
     $requeteVerif = $connexion->prepare("SELECT id FROM utilisateurs WHERE nom_utilisateur = ?");
@@ -32,6 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Hachage du mot de passe
     $motDePasseHash = password_hash($motDePasse, PASSWORD_DEFAULT);
+
+    // Définition d'un rôle par défaut
+    $role = 'utilisateur'; // Rôle par défaut pour les nouveaux inscrits
 
     // Insertion dans la base de données
     $requete = $connexion->prepare("INSERT INTO utilisateurs (nom_utilisateur, mot_de_passe, role) VALUES (?, ?, ?)");
