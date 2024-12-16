@@ -137,6 +137,7 @@
         <a href="biome/Projet ZOO, les Biomes.html">𓃰 Nos animaux</a>
         <a href="#">𓅡 Enclos du parc</a>
         <a href="#">𓃱 Administration</a>
+        <a id="login-container" href="connexion.php">𓃱 Se connecter</a>
     </div>
 
     <!-- Contenu principal -->
@@ -181,6 +182,51 @@
 
     <!-- Image décorative -->
     <img class="decorative-image" src="images/LogoAix.png" alt="Logo du Parc">
+
+    <script>
+        // Fonction pour lire un cookie
+        function getCookie(name) {
+            let cookieArr = document.cookie.split(";"); // Obtenir tous les cookies
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+    
+                // Supprimer les espaces avant le nom du cookie et le comparer
+                if (name === cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]); // Retourne la valeur du cookie
+                }
+            }
+            return null; // Si le cookie n'existe pas
+        }
+    
+        // Vérifier si l'utilisateur est connecté
+        const nomUtilisateur = getCookie("nom_utilisateur");
+    
+        if (nomUtilisateur) {
+            // Remplacer "Se connecter" par le nom d'utilisateur
+            const loginContainer = document.getElementById("login-container");
+            loginContainer.textContent = `𓃱 ${nomUtilisateur}`;
+            loginContainer.href = "#"; // Désactiver le lien ou le rediriger vers une page de profil, par exemple
+        }
+    </script>
+
+<a id="logout-button" href="#" style="display: none;">Se déconnecter</a>
+
+<script>
+    if (nomUtilisateur) {
+        const logoutButton = document.getElementById("logout-button");
+        logoutButton.style.display = "block"; // Afficher le bouton
+        logoutButton.addEventListener("click", function () {
+            // Supprimer les cookies
+            document.cookie = "nom_utilisateur=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+            // Rediriger vers l'accueil
+            window.location.href = "index.html";
+        });
+    }
+</script>
+
+
 
 </body>
 </html>
