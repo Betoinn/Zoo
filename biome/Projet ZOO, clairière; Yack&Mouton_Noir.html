@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enclos des Yacks et des Moutons Noir</title>
+    <style>
+        body {
+            /* Utilisation de l'image de fond */
+            background-image: url("../assets/chemin_jungle.avif");
+            background-size: cover; /* Couvre toute la page */
+            background-position: center; /* Centrer l'image */
+            background-attachment: fixed; /* L'image reste fixe lors du défilement */
+            margin: 0; /* Supprime les marges par défaut */
+            height: 100vh; /* Hauteur de la page */
+        }
+    </style>
+	<style>
+        .container {
+            display: flex;
+            justify-content: center; /* Centrage horizontal */
+            align-items: center;     /* Centrage vertical */
+            height: 100vh;           /* Hauteur de la fenêtre */
+            flex-wrap: wrap;         /* Permet aux images de s'ajuster si nécessaire */
+        }
+
+        .container img {
+            margin: 10px; /* Espacement entre les images */
+            max-width: 380px; /* Limite la taille des images */
+			width: 380px; /* Largeur de l'image */
+			height: 380px; /* Hauteur de l'image */
+			object-fit: cover; /* Permet de remplir sans déformer */
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: white;">Bienvenue chez les animaux habitant dans la clairière</h1>
+	<div class="container">
+		<img src="../assets/Enclos 5  Les Clairières/Yack.jpeg"  alt="Image 1">
+		<h1 style="text-align: center; color: white;">Yack</h1>
+		<img src="../assets/Enclos 5  Les Clairières/Mouton noir.jpg" alt="Image 2">
+		<h1 style="text-align: center; color: white;">Mouton Noir</h1>
+	</div>
+</body>
+</html>
