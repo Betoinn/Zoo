@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Enclos des Saïmiri et des Coati</title>
+    <style>
+        body {
+            /* Utilisation de l'image de fond */
+            background-image: url("../assets/belvédère.jpg");
+            background-size: cover; /* Couvre toute la page */
+            background-position: center; /* Centrer l'image */
+            background-attachment: fixed; /* L'image reste fixe lors du défilement */
+            margin: 0; /* Supprime les marges par défaut */
+            height: 100vh; /* Hauteur de la page */
+        }
+    </style>
+	<style>
+        .container {
+            display: flex;
+            justify-content: center; /* Centrage horizontal */
+            align-items: center;     /* Centrage vertical */
+            height: 100vh;           /* Hauteur de la fenêtre */
+            flex-wrap: wrap;         /* Permet aux images de s'ajuster si nécessaire */
+        }
+
+        .container img {
+            margin: 10px; /* Espacement entre les images */
+            max-width: 350px; /* Limite la taille des images */
+			width: 350px; /* Largeur de l'image */
+			height: 350px; /* Hauteur de l'image */
+			object-fit: cover; /* Permet de remplir sans déformer */
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: white;">Bienvenue chez les animaux habitant dans le Belvédère</h1>
+	<div class="container">
+		<img src="../assets/Enclos 1  Le Belvédère/Saïmiri.jpg" alt="Image 8">
+		<h1 style="text-align: center; color: white;">Saïmiri</h1>
+		<img src="../assets/Enclos 1  Le Belvédère/Casoar2.jpeg"  alt="Image 9">
+		<h1 style="text-align: center; color: white;">Coati</h1>
+	</div>
+</body>
+</html>
