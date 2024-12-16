@@ -1,30 +1,22 @@
 <?php
 include 'config.php';
 
-// Vérifier si un ID d'enclos est fourni
+// Vérification de l'ID de l'enclos
 if (!isset($_GET['id_enclos'])) {
-    die(json_encode(['error' => 'ID de l\'enclos non fourni']));
+    die("Enclos non spécifié");
 }
 
 $idEnclos = intval($_GET['id_enclos']);
 
-// Requête pour récupérer les animaux de l'enclos
-$queryAnimaux = $connexion->prepare("
-    SELECT id, nom_animal 
-    FROM animaux 
-    WHERE id_enclos = ?
-");
-$queryAnimaux->bind_param("i", $idEnclos);
-$queryAnimaux->execute();
-$result = $queryAnimaux->get_result();
+// Requête pour récupérer les animaux de cet enclos
+$query = $connexion->prepare("SELECT id, nom_animal FROM animaux WHERE id_enclos = ?");
+$query->bind_param("i", $idEnclos);
+$query->execute();
+$result = $query->get_result();
 
-$animaux = [];
+// Afficher les animaux
+echo "<h2>Animaux de l'enclos $idEnclos :</h2>";
 while ($row = $result->fetch_assoc()) {
-    $animaux[] = $row;
+    echo "<a href='animal.php?id_animal=" . $row['id'] . "'>Animal: " . $row['nom_animal'] . "</a><br>";
 }
-
-// Retourner les données au format JSON
-header('Content-Type: application/json');
-echo json_encode($animaux);
-
 ?>
