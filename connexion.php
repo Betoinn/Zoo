@@ -1,7 +1,5 @@
- 
 <?php
 include 'config.php';
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($_POST["nom_utilisateur"]) || empty($_POST["mot_de_passe"])) {
@@ -9,17 +7,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
- // Vérification pour l'admin 
- if ($nomUtilisateur === "userAdmin" && $motDePasse === "mdpAdmin") {
-    // Stocker les informations dans des cookies
-    setcookie("nom_utilisateur", "userAdmin", time() + 3600, "/"); // Cookie valable 1h
-    setcookie("role", "admin", time() + 3600, "/"); // Cookie valable 1h
-    echo "Connexion réussie en tant qu'administrateur.";
-    exit;
-}
-
-$nomUtilisateur = htmlspecialchars(trim($_POST["nom_utilisateur"]));
+    // Vérification pour l'admin
+    $nomUtilisateur = htmlspecialchars(trim($_POST["nom_utilisateur"]));
     $motDePasse = trim($_POST["mot_de_passe"]);
+
+    if ($nomUtilisateur === "userAdmin" && $motDePasse === "mdpAdmin") {
+        // Stocker les informations dans des cookies
+        setcookie("nom_utilisateur", "userAdmin", time() + 3600, "/"); // 1 heure
+        setcookie("role", "admin", time() + 3600, "/"); // 1 heure
+        echo "<script>alert('Connexion réussie en tant qu\'administrateur.'); window.location.href = 'index.html';</script>";
+        exit();
+    }
 
     // Requête pour vérifier les informations de connexion
     $requete = $connexion->prepare("SELECT id, mot_de_passe, role FROM utilisateurs WHERE nom_utilisateur = ?");
@@ -33,16 +31,11 @@ $nomUtilisateur = htmlspecialchars(trim($_POST["nom_utilisateur"]));
         // Vérifier le mot de passe
         if (password_verify($motDePasse, $utilisateur['mot_de_passe'])) {
             // Connexion réussie : Stocker les informations dans des cookies
-            setcookie("user_id", $utilisateur['id'], time() + 3600, "/"); 
-            setcookie("nom_utilisateur", $nomUtilisateur, time() + 3600, "/"); 
+            setcookie("nom_utilisateur", $nomUtilisateur, time() + 3600, "/"); // Cookie valable 1h
             setcookie("role", $utilisateur['role'], time() + 3600, "/"); 
 
-            // Rediriger en fonction du rôle
-            if ($utilisateur['role'] === 'administrateur') {
-                header("Location: admin_dashboard.php");
-            } else {
-                header("Location: index.html");
-            }
+            // Rediriger vers la page d'accueil
+            header("Location: index.html");
             exit();
         } else {
             echo "<script>alert('Nom d\'utilisateur ou mot de passe incorrect.'); window.location.href = 'index.html';</script>";
@@ -50,6 +43,9 @@ $nomUtilisateur = htmlspecialchars(trim($_POST["nom_utilisateur"]));
     } else {
         echo "<script>alert('Nom d\'utilisateur ou mot de passe incorrect.'); window.location.href = 'index.html';</script>";
     }
-    
+
+   
 }
+
+
 ?>
