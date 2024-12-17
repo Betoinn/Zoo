@@ -28,7 +28,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     if (!isset($data[$enclosId])) {
         $data[$enclosId] = [
             'nom_enclos' => $row['nom_enclos'],
-            'image_enclos' => $row['image_enclos'],
+            // Ajouter ici la ligne pour construire le chemin complet de l'image
+            'image_enclos' => 'images/enclos/' . $row['image_enclos'],  // Ici, vous concaténez le chemin
             'animaux' => []
         ];
     }
