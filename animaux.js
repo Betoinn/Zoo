@@ -30,8 +30,26 @@ fetch('animaux.php')
 
 // Fonction pour ouvrir le pop-up avec le carrousel des animaux
 function openPopup(enclos) {
-    const modalBody = document.getElementById('modal-body');
-    modalBody.innerHTML = ''; // Réinitialiser le contenu du modal
+    const modal = new bootstrap.Modal(document.getElementById('modal'));
+    const modalBody = document.querySelector('.modal-body'); // Sélectionner correctement la section du modal
+
+    // Réinitialiser le contenu du modal
+    modalBody.innerHTML = '';
+
+    // Ajouter l'image de l'enclos
+    const enclosImage = document.createElement('img');
+    enclosImage.src = enclos.image_enclos ? enclos.image_enclos : 'images/enclos/default-enclos.jpg';
+    enclosImage.alt = enclos.nom_enclos;
+    enclosImage.classList.add('img-fluid');
+    modalBody.appendChild(enclosImage);
+    console.log(enclos.image_enclos);  // Vérifier l'URL de l'image dans la console
+
+    
+
+    // Ajouter le nom de l'enclos
+    const enclosName = document.createElement('h3');
+    enclosName.textContent = enclos.nom_enclos;
+    modalBody.appendChild(enclosName);
 
     // Créer le carrousel des animaux
     const carouselDiv = document.createElement('div');
@@ -76,7 +94,9 @@ function openPopup(enclos) {
     nextButton.innerHTML = `<span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Suivant</span>`;
     carouselDiv.appendChild(nextButton);
 
+    // Ajouter le carrousel au modal
+    modalBody.appendChild(carouselDiv);
+
     // Afficher le modal
-    const modal = new bootstrap.Modal(document.getElementById('modal'));
     modal.show();
 }
