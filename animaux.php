@@ -1,56 +1,49 @@
 <?php
-// Inclusion du fichier de connexion à la base de données
-include 'config.php';
+include 'config.php';  // Inclure le fichier de connexion à la base de données
 
-// Requête SQL pour récupérer les biomes, enclos et animaux
+// Requête SQL pour récupérer les animaux et les enclos avec leurs images
 $query = "
-    SELECT b.id AS biome_id, b.nom_biome, b.couleur_code,
-           e.id AS enclos_id, e.nom_enclos, e.statut,
-           a.id AS animal_id, a.nom_animal
-    FROM biomes AS b
-    LEFT JOIN enclos AS e ON b.id = e.biome_id
+    SELECT e.id AS enclos_id, e.nom_enclos, e.image_enclos, 
+           a.id AS animal_id, a.nom_animal, a.image_animal
+    FROM enclos AS e
     LEFT JOIN animaux AS a ON e.id = a.enclos_id
-    ORDER BY b.id, e.id, a.id
+    ORDER BY e.id, a.id
 ";
 
-$result = mysqli_query($conn, $query);
+$result = mysqli_query($connexion, $query);
 
-// Vérification de la requête SQL
+// Vérification de la requête
 if (!$result) {
-    die("Erreur SQL : " . mysqli_error($conn));
+    die("Erreur SQL : " . mysqli_error($connexion));
 }
 
-// Organisation des données
-$biomes = [];
-while ($row = mysqli_fetch_assoc($result)) {
-    $biomeId = $row['biome_id'];
-    $enclosId = $row['enclos_id'];
+// Tableau pour stocker les données des enclos et des animaux
+$data = [];
 
-    // Structuration des données
-    if (!isset($biomes[$biomeId])) {
-        $biomes[$biomeId] = [
-            'nom' => $row['nom_biome'],
-            'couleur' => $row['couleur_code'],
-            'enclos' => []
+while ($row = mysqli_fetch_assoc($result)) {
+    $enclosId = $row['enclos_id'];
+    $animalId = $row['animal_id'];
+
+    // Ajouter l'enclos si non déjà existant dans le tableau
+    if (!isset($data[$enclosId])) {
+        $data[$enclosId] = [
+            'nom_enclos' => $row['nom_enclos'],
+            'image_enclos' => $row['image_enclos'],
+            'animaux' => []
         ];
     }
 
-    if ($enclosId) {
-        if (!isset($biomes[$biomeId]['enclos'][$enclosId])) {
-            $biomes[$biomeId]['enclos'][$enclosId] = [
-                'nom' => $row['nom_enclos'],
-                'statut' => $row['statut'],
-                'animaux' => []
-            ];
-        }
-
-        if ($row['animal_id']) {
-            $biomes[$biomeId]['enclos'][$enclosId]['animaux'][] = $row['nom_animal'];
-        }
+    // Ajouter l'animal à l'enclos respectif
+    if ($animalId) {
+        $data[$enclosId]['animaux'][] = [
+            'animal_id' => $animalId,
+            'nom_animal' => $row['nom_animal'],
+            'image_animal' => $row['image_animal']
+        ];
     }
 }
 
-// Envoi des données en format JSON
+// Envoi des données en JSON
 header('Content-Type: application/json');
-echo json_encode(array_values($biomes), JSON_PRETTY_PRINT);
+echo json_encode(array_values($data), JSON_PRETTY_PRINT);
 ?>
