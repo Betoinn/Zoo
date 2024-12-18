@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billetterie du Parc</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anta&display=swap">
+    <style>
+        body {
+            font-family: 'Anta', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('images/Billetterie.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dark-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: white;
+            padding: 0 20px;
+            font-size: 25px;
+            z-index: 1;
+        }
+        .dark-bar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        .dark-bar a:hover {
+            color: #007bff;
+        }
+        h1 {
+            margin-top: 100px;
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+        .category-column {
+            flex: 1;
+            min-width: 250px;
+            margin: 15px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .category-column h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        .ticket-card {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .ticket-card:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .form-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
+        }
+        .form-container input {
+            width: calc(100% - 20px);
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function showForm(ticketType) {
+            const formContainer = document.querySelector('.form-container');
+            const ticketInput = document.getElementById('ticket-type');
+            const priceInput = document.getElementById('ticket-price');
+
+            formContainer.style.display = 'block';
+            ticketInput.value = ticketType;
+
+            switch(ticketType) {
+                case 'Billet Adulte - 15€':
+                    priceInput.value = '15€';
+                    break;
+                case 'Billet Enfant (3-12 ans) - 10€':
+                    priceInput.value = '10€';
+                    break;
+                case 'Billet Senior (+65 ans) - 12€':
+                    priceInput.value = '12€';
+                    break;
+                case 'Billet Famille (2 adultes + 2 enfants) - 45€':
+                    priceInput.value = '45€';
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="dark-bar">
+        <a href="index.html">𓃹 Accueil</a>
+        <a href="pistes.html">𓅯 Billetterie</a>
+        <a href="services.html">𓃘 Services</a>
+        <a href="animaux.html">𓃰 Nos animaux</a>
+        <a href="enclos.html">𓅡 Enclos du parc</a>
+        <a href="administration.html">𓃱 Administration</a>
+    </div>
+    <h1>Billetterie du Parc</h1>
+    <div class="categories-container">
+        <!-- Colonne Types de billets -->
+        <div class="category-column">
+            <h2>Types de billets</h2>
+            <div class="ticket-card" onclick="showForm('Billet Adulte - 15€')">
+                🎟️ Billet Adulte - 15€
+            </div>
+            <div class="ticket-card" onclick="showForm('Billet Enfant (3-12 ans) - 10€')">
+                🎟️ Billet Enfant (3-12 ans) - 10€
+            </div>
+            <div class="ticket-card" onclick="showForm('Billet Senior (+65 ans) - 12€')">
+                🎟️ Billet Senior (+65 ans) - 12€
+            </div>
+            <div class="ticket-card" onclick="showForm('Billet Famille (2 adultes + 2 enfants) - 45€')">
+                🎟️ Billet Famille (2 adultes + 2 enfants) - 45€
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire d'inscription -->
+    <div class="form-container">
+        <h2>Inscrivez-vous pour générer votre billet</h2>
+        <form action="billet.html" method="post">
+            <input type="hidden" id="ticket-type" name="ticketType" value="">
+            <input type="hidden" id="ticket-price" name="ticketPrice" value="">
+            <input type="text" name="prenom" placeholder="Prénom" required>
+            <input type="text" name="nom" placeholder="Nom" required>
+            <input type="email" name="email" placeholder="Adresse e-mail" required>
+            <input type="date" name="date" placeholder="Date" required>
+            <button type="submit">Générer mon billet</button>
+        </form>
+    </div>
+</body>
+</html>
