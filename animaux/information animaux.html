@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Information  Animaux </title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center; /* Centrage horizontal */
+            align-items: center;     /* Centrage vertical */
+            height: 100vh;           /* Hauteur de la fenêtre */
+            flex-wrap: wrap;         /* Permet aux images de s'ajuster si nécessaire */
+        }
+
+        .container img {
+            margin: 10px; /* Espacement entre les images */
+            max-width: 350px; /* Limite la taille des images */
+			width: 500px; /* Largeur de l'image */
+			height: 500px; /* Hauteur de l'image */
+			object-fit: cover; /* Permet de remplir sans déformer */
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: white;">Information de tous les animaux du parc </h1>
+	<div class="container">
+		<img src="../assets/Enclos 1  Le Belvédère/Gnou.jpg"  alt="Image 1">
+		<h1 style="text-align: center; color: white;">Gnou</h1>
+		<img src="../assets/Enclos 1  Le Belvédère/Oryx beisa.jpg" alt="Image 2">
+		<h1 style="text-align: center; color: white;">Oryx beisa</h1>
+		<img src="../assets/Enclos 1  Le Belvédère/rhinoceros.jpg"  alt="Image 3">
+		<h1 style="text-align: center; color: white;">Rhinocéros</h1>
+	</div>
+</body>
+</html>
